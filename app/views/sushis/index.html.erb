@@ -18,6 +18,8 @@
   <% end %>
 </div>
 
+<%= image_tag "maguro.jpeg", class: "picture" %>
+
 <div class="home">
 <h4>人気の寿司ネタはこちら▼</h4>
 
@@ -53,15 +55,27 @@
   <%= paginate @sushis %>
 
 
+
   <% @sushis.each do |t| %>
+    <div class="sushipostbox"
       <div class="sushi">
+      <div class="username">
         <%= link_to t.user.name, user_path(t.user.id) %>
-        <%= t.user.email %>
+      </div>
 
+      <div class="sushiimage">
         <%= image_tag t.image_url, size: "100x50" if t.image? %>
+      </div>
 
+      <div class="sushiname">
         <%= t.sushiname %>
+      </div>
+
+      <div class="highlight">
         <%= t.highlight %>
+      </div>
+
+      <div class="sushibottom">
 
         <% if user_signed_in? %>
         <% if current_user.already_liked?(t) %>
@@ -94,6 +108,11 @@
       <% end %> 
       
       </div>
-  <% end %>
+
+      </div>
+  
+      <% end %>
+
+  </div>
 
 </div>
