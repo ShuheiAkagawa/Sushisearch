@@ -1,0 +1,70 @@
+// Place all the styles related to the sushis controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.searchbox{
+    height: 5vh;
+}
+.sushi-search-box{
+    text-align: right;
+    margin-right: 20px;
+    
+}
+
+.sushi{
+    padding-bottom: 60px;
+
+}
+
+.tobigbox{
+    display: flex;gap: 10px;
+    margin-bottom: 5%;  
+}
+
+.tosalmon {
+    width: 115px;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color:  #F25E5E;/*文字色*/
+    background: #FFF;
+    border: solid 3px  #F25E5E;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.tosalmon p {
+    margin: 0; 
+    padding: 0;
+}
+
+.tosaba {
+    width: 85px;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color:  #F25E5E;/*文字色*/
+    background: #FFF;
+    border: solid 3px  #F25E5E;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.tosaba p {
+    margin: 0; 
+    padding: 0;
+}
+
+.tomaguro {
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color:  #F25E5E;/*文字色*/
+    background: #FFF;
+    border: solid 3px  #F25E5E;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.tomaguro p {
+    margin: 0; 
+    padding: 0;
+}
+

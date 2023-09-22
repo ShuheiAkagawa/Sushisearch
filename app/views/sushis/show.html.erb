@@ -1,0 +1,47 @@
+<h1>にぎり</h1>
+<h3>投稿詳細</h3>
+<div class="sushi">
+  <p><%= @sushi.sushiname %></p>
+  <p><%= @sushi.highlight %></p>
+
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@sushi) %>
+        <%= link_to sushi_like_path(@sushi), method: :delete do %>
+          <i class="fas fa-heart"></i><%= @sushi.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to sushi_likes_path(@sushi), method: :post do %>
+          <i class="far fa-heart"></i><%= @sushi.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+    <i class="far fa-heart"></i><%= @sushi.likes.count %>
+    <% end %>
+
+
+ <% if user_signed_in? && current_user.id == @sushi.user_id %>
+  <%= link_to "編集する", edit_sushi_path(@sushi.id) %>
+  <%= button_to "削除する", sushi_path(@sushi.id), method: :delete %> 
+ <% end %> 
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @sushi.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+<%= image_tag @sushi.image_url, size: "150x100" if @sushi.image? %>
+
+<%= link_to "一覧に戻る", sushis_path %>
+
+<% if @sushi.category == "maguro" %>  
+ <%= link_to "まぐろ一覧へ", sushis_maguro_path %>
+<% end %>
+
+<% if @sushi.category == "salmon" %>  
+ <%= link_to "サーモン一覧へ", sushis_salmon_path %>
+<% end %>
+
+<% if @sushi.category == "saba" %>  
+ <%= link_to "さば一覧へ", sushis_saba_path %>
+<% end %>

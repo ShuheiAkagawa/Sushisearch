@@ -1,0 +1,46 @@
+<div class="breadcrumb">
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="http://localhost:3000/sushis">
+        <span itemprop="name">HOME</span>
+    </a>
+    <meta itemprop="position" content="1" />
+  </li>
+
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    
+    <a itemprop="item" href="http://localhost:3000/sushis/new">
+        <span itemprop="name">新規投稿</span>
+    </a>
+    <meta itemprop="position" content="2" />
+  </li>
+
+</ol>
+
+<h1>新規投稿</h1>
+<h3>好きな寿司ネタを投稿しよう！</h3>
+<%= form_for @sushi do |f| %>
+
+  <div class="field">
+    <%= f.label :寿司ネタの名前 %>
+    <%= f.text_field :sushiname, :size => 30 %>
+  </div>
+
+  <%= f.select :category, [ ["サーモン", "salmon"], ["さば", "saba"], ["まぐろ", "maguro"]], include_blank: "カテゴリー選択" %>
+
+  <div class="field">
+    <%= f.label :おいしさの説明  %>
+    <%= f.text_area :highlight, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :寿司ネタの画像 %>
+    <%= f.file_field :image %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "マイページへ", user_path(current_user.id) %>

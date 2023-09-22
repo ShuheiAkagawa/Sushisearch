@@ -1,0 +1,46 @@
+<div class="breadcrumb">
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="http://localhost:3000/sushis">
+        <span itemprop="name">HOME</span>
+    </a>
+    <meta itemprop="position" content="1" />
+  </li>
+
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    
+    <a itemprop="item" href="http://localhost:3000/users/3">
+        <span itemprop="name">マイページ</span>
+    </a>
+    <meta itemprop="position" content="2" />
+  </li>
+
+</ol>
+
+<div class="mypagemini1">
+  <h1>マイページ</h1>
+  <p>名前 : <%= @user.name %></p>
+  <%= image_tag @user.image_url, size: "100x50" if @user.image? %>
+
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>プロフィール文 : <%= @user.profile %></p>
+
+  <% if current_user.id == @user.id %>
+    <%= link_to "編集する", edit_user_registration_path %>
+  <% end %>
+
+</div>
+
+<div class="mypagemini2">
+  <h2>ユーザーの投稿一覧</h2>
+
+  <%= link_to "新規投稿をする", new_sushi_path %>
+
+  <% @user.sushis.each do |t| %>
+    <%= t.sushiname %>
+  <% end %>
+
+  
+</div>

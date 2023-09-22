@@ -1,0 +1,9 @@
+<h1>サーモン一覧</h1>
+<% @sushis.each do |t| %>
+  <% if t.category == "salmon" %> 
+  <p>寿司ネタの名前:<%= t.sushiname %></p>
+  <p>おいしさの説明:<%= t.highlight %></p>
+  <%= image_tag t.image_url, size: "150x100" if t.image? %>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,99 @@
+<div class="breadcrumb">
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="http://localhost:3000/sushis">
+        <h2><span itemprop="name">HOME</span></h2>
+    </a>
+    <meta itemprop="position" content="1" />
+  </li>
+</ol>
+
+
+<div class="sushi-search-box">
+  <h3>寿司ネタを検索</h3>
+  <%= form_tag({controller:"sushis",action:"index"}, method: :get) do %>
+    <%= text_field_tag :search ,"",{class:"searchbox"} %>
+    <%= submit_tag '検索'  %>
+  <% end %>
+</div>
+
+<div class="home">
+<h4>人気の寿司ネタはこちら▼</h4>
+
+  <div class="tobigbox">
+    <div class="tosalmon">
+        <p><%= link_to "サーモン一覧へ", sushis_salmon_path %></p>
+    </div>
+
+    <div class="tosaba">
+        <p><%= link_to "さば一覧へ", sushis_saba_path %></p>
+    </div>
+
+    <div class="tomaguro">
+        <p><%= link_to "まぐろ一覧へ", sushis_maguro_path %></p>
+    </div>
+ </div>
+
+<div class="toppage4bigbox"
+
+
+
+  <div class="sushis-container">
+  <% if user_signed_in? %>
+  </div>
+
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+  <% end %>
+
+</div>
+
+<div class="sushilistbox">
+  <%= page_entries_info @sushis %>
+  <%= paginate @sushis %>
+
+
+  <% @sushis.each do |t| %>
+      <div class="sushi">
+        <%= link_to t.user.name, user_path(t.user.id) %>
+        <%= t.user.email %>
+
+        <%= image_tag t.image_url, size: "100x50" if t.image? %>
+
+        <%= t.sushiname %>
+        <%= t.highlight %>
+
+        <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+            <%= link_to sushi_like_path(id: t.id, sushi_id: t.id), method: :delete do %>
+              <i class="fas fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% else %>
+            <%= link_to sushi_likes_path(id: t.id, sushi_id: t.id), method: :post do %>
+              <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
+    <% end %>
+
+        <%= link_to "詳細へ", sushi_path(t.id) %>
+        <% if t.category == "maguro" %>
+        <%= link_to "まぐろ一覧へ", sushis_maguro_path %>
+        <% end %>
+        <% if t.category == "salmon" %>
+        <%= link_to "サーモン一覧へ", sushis_salmon_path %>
+        <% end %>
+        <% if t.category == "saba" %>
+        <%= link_to "さば一覧へ", sushis_saba_path %>
+        <% end %>
+
+        <% if user_signed_in? && current_user.id == t.user_id %>
+        <%= link_to "編集する", edit_sushi_path(t.id) %>
+        <%= link_to "削除する", sushi_path(t.id), method: :delete %>
+      <% end %> 
+      
+      </div>
+  <% end %>
+
+</div>

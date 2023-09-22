@@ -1,0 +1,7 @@
+<%= form_for @sushi do |f| %>
+    <%= f.label :寿司ネタの名前 %>
+    <%= f.text_field :sushiname, :size => 140 %> 
+    <%= f.label :おいしさの説明 %>
+    <%= f.text_field :highlight, :size => 140 %> 
+    <%= f.submit "編集する" %>
+  <% end %>

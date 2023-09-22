@@ -1,0 +1,71 @@
+<div class="breadcrumb">
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="http://localhost:3000/sushis">
+        <span itemprop="name">HOME</span>
+    </a>
+    <meta itemprop="position" content="1" />
+  </li>
+
+  <li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+    
+    <a itemprop="item" href="http://localhost:3000/sushis/maguro">
+        <span itemprop="name">まぐろ一覧</span>
+    </a>
+    <meta itemprop="position" content="2" />
+  </li>
+
+</ol>
+
+<h1>まぐろ一覧</h1>
+＃まぐろの写真
+
+<div class="magurobox1">
+
+  <div class="magurotaste">
+    【味】★★★☆☆
+  </div>
+
+  <div class="magurotexture">
+    【食感】★★☆☆☆
+  </div>
+
+</div>
+
+<div class="magurobox2">
+
+  <div class="maguromini1">
+
+    <div class="magurodetail">
+    【詳細情報】
+    <p>
+    まぐろは美味いです。
+    </p>
+    </div>
+
+    <div class="maguroad">
+    ＃広告もどき（画像載せる）
+    </div>
+
+  </div>
+
+  <div class="maguromini2">
+    【人気の投稿】
+
+    <% @sushis.each do |t| %>
+      <% if t.category == "maguro" %>  
+      <p>寿司ネタの名前:<%= t.sushiname %></p>
+      <p>おいしさの説明:<%= t.highlight %></p>
+      <%= image_tag t.image_url, size: "150x100" if t.image? %>
+      <% end %>
+    <% end %>
+      
+  </div>
+
+</div>
+
+
+
+  
